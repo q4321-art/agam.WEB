@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGAM AL HAKIM - Portfolio</title>
+    <style>
+        :root {
+            --bg-page: #000000;
+            --bg-card: #242321;
+            --bg-light: #dfddd6;
+            --text-primary: #00eeff;
+            --text-secondary: #317b92;
+            --text-muted: #1cb9f3;
+            --text-inverse: #000000;
+            --border-light: rgba(22, 66, 72, 0.799);
+            --border-medium: #00ddff;
+            --border-strong: #00e5ff;
+            --brand-primary: #2b97a3a1;
+            --brand-hover: rgba(0, 225, 255, 0.895);
+            --brand-active: rgb(6, 251, 75);
+            /* Warna hijau untuk skill */
+            --skill-color: #4ade80; /* hijau neon lembut */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .brand-display {
+            font-weight: 900;
+            font-size: clamp(3rem, 5vw, 6rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .heading-1 {
+            font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .heading-2 {
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .heading-3 {
+            font-weight: 600;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            line-height: 1.2;
+        }
+
+        .body-large {
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .body-medium {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .body-small {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .btn-primary {
+            background: var(--brand-primary);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(6, 198, 251, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--brand-primary);
+            border: 2px solid var(--brand-primary);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--brand-primary);
+            color: var(--text-inverse);
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--brand-primary);
+        }
+
+        .skill-bar {
+            background: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 12px;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            /* DIUBAH KE HIJAU */
+            background: var(--skill-color);
+            border-radius: 10px;
+            transition: width 2s ease-in-out;
+        }
+
+        .certificate-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--brand-primary);
+        }
+
+        .certificate-card:hover img {
+            transform: scale(1.1);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(26, 28, 27, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        nav {
+            max-width: 87.5rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--brand-primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        section {
+            max-width: 87.5rem;
+            margin: 0 auto;
+        }
+
+        /* === MODAL LIGHTBOX UNTUK SERTIFIKAT === */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(0, 0, 0);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--brand-primary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .modal-content img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .responsive-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 4rem 1rem !important;
+            }
+            
+            .brand-display {
+                font-size: 2.5rem !important;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div style="color: var(--brand-primary); font-weight: bold; font-size: 1.2rem; cursor: pointer;">AGAM AL HAKIM</div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#certificates" class="nav-link active">Certificates</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12h16M4 18h16M4 6h16"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Bagian Home, About, Skills tetap sama -->
+    <section id="home" style="min-height: 100vh; display: flex; align-items: center; padding: 6rem 2rem 4rem;">
+        <!-- Konten home tetap -->
+        <div class="responsive-grid" style="width: 100%;">
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px;">Halo, Saya</p>
+                    <h1 class="brand-display" style="color: var(--brand-primary);">AGAM AL HAKIM</h1>
+                    <h2 style="font-size: 1.8rem; color: var(--text-secondary); font-weight: 600;">Mahasiswa Teknik Informatika</h2>
+                </div>
+                <p class="body-large" style="color: var(--bg-light); max-width: 600px;">Passionate dalam dunia programming dengan keahlian tinggi di berbagai bahasa pemrograman. Selalu siap belajar dan berkembang dalam teknologi terbaru.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="document.getElementById('certificates').scrollIntoView({behavior: 'smooth'})">
+                        Lihat Portfolio Saya
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 0.5rem;">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    <button class="btn-secondary" onclick="document.getElementById('skills').scrollIntoView({behavior: 'smooth'})">Lihat Skills</button>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div style="position: relative;">
+                    <div style="width: 320px; height: 320px; background: linear-gradient(135deg, rgba(217, 251, 6, 0.2), rgba(63, 72, 22, 0.2)); border-radius: 50%; filter: blur(60px); position: absolute; top: -2rem; left: -2rem;"></div>
+                    <div style="position: relative; z-index: 10; background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem; backdrop-filter: blur(10px);">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+                                <div style="width: 48px; height: 48px; background: var(--brand-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-inverse)" stroke-width="2">
+                                        <polyline points="16 18 22 12 16 6"/>
+                                        <polyline points="8 6 2 12 8 18"/>
+                                    </svg>
+                                </div>
+                                <span style="color: var(--brand-primary); font-size: 0.9rem; font-weight: 500;">Code</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+                                <div style="width: 48px; height: 48px; background: var(--border-medium); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                        <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+                                        <path d="M3 12A9 3 0 0 0 21 12"/>
+                                    </svg>
+                                </div>
+                                <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Data</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+                                <div style="width: 48px; height: 48px; background: var(--text-secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                        <path d="M2 12h20"/>
+                                    </svg>
+                                </div>
+                                <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Web</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <p style="color: var(--brand-primary); font-weight: 600; font-size: 1.2rem;">10+ Skills</p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Programming Languages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="padding: 6rem 2rem; border-top: 1px solid var(--border-light);">
+        <!-- Konten about tetap -->
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="heading-1" style="color: var(--brand-primary); margin-bottom: 1.5rem;">TENTANG SAYA</h2>
+            <p class="body-large" style="color: var(--text-secondary); max-width: 800px; margin: 0 auto;">Mengenal lebih dalam tentang perjalanan akademik dan passion saya dalam dunia teknologi</p>
+        </div>
+        <div class="responsive-grid" style="grid-template-columns: 2fr 1fr; align-items: start;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                    <div style="width: 48px; height: 48px; background: var(--brand-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-inverse)" stroke-width="2">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="heading-3" style="color: var(--brand-primary);">Profil Diri</h3>
+                </div>
+                <div style="color: var(--bg-light); line-height: 1.7;">
+                    <p class="body-medium" style="margin-bottom: 1rem;">Saya adalah mahasiswa Teknik Informatika semester 3 yang memiliki passion tinggi dalam dunia pemrograman dan pengembangan software. Meskipun masih dalam tahap pembelajaran, saya telah menguasai berbagai bahasa pemrograman dengan tingkat keahlian yang tinggi.</p>
+                    <p class="body-medium" style="margin-bottom: 1rem;">Perjalanan saya dimulai sejak SMA tahun 2024, dan kini saya terus mengasah kemampuan dalam bidang teknologi informasi. Saya memiliki ketertarikan khusus pada pengembangan web, algoritma, dan struktur data.</p>
+                    <p class="body-medium">Dengan dedikasi dan semangat belajar yang tinggi, saya terus berupaya mengembangkan kemampuan teknis dan soft skills untuk menjadi developer yang kompeten di masa depan.</p>
+                </div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem; text-align: center; position: sticky; top: 6rem;">
+                <div style="width: 192px; height: 256px; background: linear-gradient(135deg, var(--brand-primary), var(--border-medium)); border-radius: 12px; margin: 0 auto 1.5rem; overflow: hidden;">
+                    <img src="generate.png" alt="AGAM AL HAKIM" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 class="heading-3" style="color: var(--brand-primary); margin-bottom: 0.5rem;">AGAM AL HAKIM</h3>
+                <p class="body-small" style="color: var(--text-secondary);">Mahasiswa Teknik Informatika</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="padding: 6rem 2rem; border-top: 1px solid var(--border-light);">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="heading-1" style="color: var(--brand-primary); margin-bottom: 1.5rem;">PROGRAMMING SKILLS</h2>
+            <p class="body-large" style="color: var(--text-secondary); max-width: 800px; margin: 0 auto;">Tingkat keahlian saya dalam berbagai bahasa pemrograman dan teknologi</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+            <!-- Semua skill tetap, tapi warna progress bar hijau -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">Python</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">JavaScript</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">CSS</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">HTML</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">C</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">C++</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">PHP</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">90%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">Golang</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">80%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">ReactJS</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">60%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 60%;"></div></div>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 16px; padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary);">C#</h3>
+                    <span style="color: var(--brand-primary); font-size: 1.2rem; font-weight: 700;">60%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 60%;"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates" style="padding: 6rem 2rem; border-top: 1px solid var(--border-light);">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="heading-1" style="color: var(--brand-primary); margin-bottom: 1.5rem;">SERTIFIKASI</h2>
+            <p class="body-large" style="color: var(--text-secondary); max-width: 800px; margin: 0 auto;">Sertifikasi dan penghargaan yang telah saya peroleh dalam bidang teknologi</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+            <!-- Sertifikat 1 -->
+            <div class="certificate-card" onclick="openModal('SERTIFIKASI PYTHON.png')">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="SERTIFIKASI PYTHON.png" alt="Python Certificate" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary); margin-bottom: 0.5rem;">SCIENTIFIC COMPUTING WHIT PYTHON</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Online Learning Platform</p>
+                    <p class="body-small" style="color: var(--bg-light); line-height: 1.5; margin-bottom: 1rem;">Advanced Python Programming and the use of the Python programming language and its libraries (such as NumPy, SciPy, and Matplotlib) to solve scientific and engineering problems, analyze data, and perform mathematical simulations in various fields of science</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); background: var(--border-medium); padding: 0.25rem 0.75rem; border-radius: 50px;">2024</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sertifikat 2 -->
+            <div class="certificate-card" onclick="openModal('SERTIFIKASI AI.png')">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="SERTIFIKASI AI.png" alt="Web Development Certificate" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary); margin-bottom: 0.5rem;">MACHINE LEARNING WITH PYTHON</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Online Learning Platform</p>
+                    <p class="body-small" style="color: var(--bg-light); line-height: 1.5; margin-bottom: 1rem;">the practice of building systems that can learn and make decisions from data, using the Python programming language and its libraries (such as Scikit-Learn, TensorFlow, and PyTorch) to implement various learning algorithms</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); background: var(--border-medium); padding: 0.25rem 0.75rem; border-radius: 50px;">2024</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sertifikat 3 -->
+            <div class="certificate-card" onclick="openModal('SERTIFIKASI FREECODECAMP🦾🎉.png')">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="SERTIFIKASI FREECODECAMP🦾🎉.png" alt="Algorithm Certificate" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary); margin-bottom: 0.5rem;">DESAIN WEB RESPONSIF</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Online Learning Platform</p>
+                    <p class="body-small" style="color: var(--bg-light); line-height: 1.5; margin-bottom: 1rem;">an approach to designing web pages to display well and be functional across a variety of screen sizes and devices, such as desktop computers, tablets, and mobile phones.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); background: var(--border-medium); padding: 0.25rem 0.75rem; border-radius: 50px;">2023</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sertifikat 4 -->
+            <div class="certificate-card" onclick="openModal('SERTIFIKASI microsoft.png')">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="SERTIFIKASI microsoft.png" alt="Database Certificate" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 class="heading-3" style="color: var(--brand-primary); margin-bottom: 0.5rem;">FOUNDATIONAL C# WITH MICROSOFT</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Online Learning Platform</p>
+                    <p class="body-small" style="color: var(--bg-light); line-height: 1.5; margin-bottom: 1rem;">This program covers the basics of C#, syntax, variables, control structures (if, loop), methods, and exception handling, preparing students to build applications using C#.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); background: var(--border-medium); padding: 0.25rem 0.75rem; border-radius: 50px;">2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: var(--bg-card); border-top: 1px solid var(--border-light); padding: 3rem 2rem 2rem;">
+        <div style="max-width: 87.5rem; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: var(--brand-primary); font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">AGAM AL HAKIM</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">Mahasiswa Teknik Informatika yang passionate dalam dunia programming dan selalu siap untuk belajar teknologi terbaru.</p>
+                    <div style="display: flex; align-items: center; color: var(--text-secondary); font-size: 0.9rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2" style="margin-right: 0.5rem;">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Indonesia
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: var(--brand-primary); font-weight: 600; margin-bottom: 1rem;">Quick Links</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <a href="#home" style="color: var(--text-secondary); cursor: pointer; transition: color 0.3s; font-size: 0.9rem; text-decoration: none;">Home</a>
+                        <a href="#about" style="color: var(--text-secondary); cursor: pointer; transition: color 0.3s; font-size: 0.9rem; text-decoration: none;">About</a>
+                        <a href="#skills" style="color: var(--text-secondary); cursor: pointer; transition: color 0.3s; font-size: 0.9rem; text-decoration: none;">Skills</a>
+                        <a href="#certificates" style="color: var(--text-secondary); cursor: pointer; transition: color 0.3s; font-size: 0.9rem; text-decoration: none;">Certificates</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: var(--brand-primary); font-weight: 600; margin-bottom: 1rem;">Connect</h4>
+                    <div style="display: flex; align-items: center; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2" style="margin-right: 0.75rem;">
+                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        </svg>
+                        <a href="mailto:agam85767@gmail.com" style="color: var(--text-secondary); text-decoration: none;">agam85767@gmail.com</a>
+                    </div>
+                    <div style="display: flex; gap: 1rem; padding-top: 0.5rem;">
+                        <!-- Ganti dengan link GitHub-mu -->
+                        <a href="https://github.com/q4321-art" target="_blank" rel="noopener" style="color: var(--text-secondary); transition: color 0.3s;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                            </svg>
+                        </a>
+                        <!-- Ganti dengan link LinkedIn-mu -->
+                        <a href="https://www.linkedin.com/in/agam-al25/" target="_blank" rel="noopener" style="color: var(--text-secondary); transition: color 0.3s;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect width="4" height="12" x="2" y="9"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid var(--border-light); padding-top: 1.5rem; text-align: center;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">© 2025 AGAM AL HAKIM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Lightbox -->
+    <div id="imageModal" class="modal" onclick="closeModal(event)">
+        <span class="close-modal" onclick="closeModalManual()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Sertifikat">
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animasi skill
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.skill-progress');
+                    bars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) observer.observe(skillsSection);
+
+        // Modal sertifikat
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            img.src = imageSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // cegah scroll
+        }
+
+        function closeModalManual() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = ''; // kembalikan scroll
+        }
+
+        function closeModal(event) {
+            if (event.target.id === 'imageModal') {
+                closeModalManual();
+            }
+        }
+    </script>
+</body>
+</html>
